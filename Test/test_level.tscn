@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkeehpr0lm0sk"]
+
+[ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
+[ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="3_tx8nj"]
+[ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Tilemap"]
+
+[node name="Cow" parent="." instance=ExtResource("1_ihw5m")]
+position = Vector2(-2, -3)
+
+[node name="Camera2D" type="Camera2D" parent="Cow"]
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(5, 5)
+texture = ExtResource("3_tx8nj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -566.0
+offset_top = -316.0
+offset_right = -526.0
+offset_bottom = -293.0
+scale = Vector2(2.08, 1.78891)
+script = ExtResource("3_xo3ay")
