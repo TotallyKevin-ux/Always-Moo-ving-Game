@@ -1,8 +1,0 @@
-Label
-Timer
-Sprite2D
-Camera2D
-CollisionShape2D
-CharacterBody2D
-TileMapLayer
-Node2D
