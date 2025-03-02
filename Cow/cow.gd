@@ -8,14 +8,23 @@ var last_input_is_x: bool = false
 var cur_vel: Vector2 = Vector2(0,0) ## current movement speed + direction
 var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
 
+
 func _physics_process(delta: float) -> void:
 	get_next_velocity()
 	set_velocity(cur_vel)
+
 	move_and_slide()
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("Enemy"):
+		print("hi")
+	else:
+		print("broken")
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
 	if(Input.is_action_pressed("up")):
+
 		cur_accel.y = -ACCEL_VAL
 		cur_accel.x = 0
 		last_input_is_x = false
