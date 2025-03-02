@@ -63,6 +63,6 @@ position = Vector2(-1, 2)
 scale = Vector2(5, 5)
 texture = ExtResource("3_tx8nj")
 
-[node name="UFO" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ojgwv")]
-position = Vector2(274, 290)
+[node name="UFO" parent="." node_paths=PackedStringArray("player") groups=["Enemy"] instance=ExtResource("4_ojgwv")]
+position = Vector2(427, 237)
 player = NodePath("../Cow")

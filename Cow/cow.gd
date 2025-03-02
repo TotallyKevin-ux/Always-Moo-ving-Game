@@ -23,3 +23,10 @@ func get_direction() -> Vector2:
 	if(res == Vector2.ZERO):
 		return direction
 	return res.normalized()
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("Enemy"):
+		print("hi")
+	else:
+		print("broken")
