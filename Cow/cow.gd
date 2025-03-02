@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED: int = 200 #px/s
 var direction: Vector2 = Vector2(0,0) ## current movement direction
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	direction = get_direction()
 	set_velocity(SPEED * direction)
 	move_and_slide()
