@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="2_eoq4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vlq3"]
+size = Vector2(62, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqh1e"]
 size = Vector2(64, 63)
@@ -13,6 +14,7 @@ position = Vector2(-2, -3)
 script = ExtResource("1_x0ndb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_6vlq3")
 
 [node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]

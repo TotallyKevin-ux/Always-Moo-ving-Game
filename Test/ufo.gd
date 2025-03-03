@@ -14,8 +14,8 @@ func _physics_process(_delta: float):
 	move_and_slide()
 
 
-func path():
-	nav_agent.target_position = player.global_position
-
-func _on_timer_timeout():
-	path()
+#func path():
+	#nav_agent.target_position = player.global_position
+#
+#func _on_timer_timeout():
+	#path()

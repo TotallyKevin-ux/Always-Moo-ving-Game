@@ -2,7 +2,7 @@ class_name Test_Cow
 extends CharacterBody2D
 
 const MAX_SPEED: int = 500 ## maximum speed in any direction
-const ACCEL_VAL: int = 50000 ## static acceleration value in any direction
+const ACCEL_TIME: float = .5 ## static acceleration time in any direction
 const RESIST_VAL: int = 10 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
 var last_input_is_x: bool = false
 var cur_vel: Vector2 = Vector2(0,0) ## current movement speed + direction
@@ -22,10 +22,10 @@ func _on_area_2d_area_entered(area):
 	else:
 		print("broken")
 
-## gets movement direction
+## gets movement directionaa
 func get_next_velocity(delta: float) -> Vector2:
 	var res := Vector2.ZERO
-	cur_accel = Vector2(ACCEL_VAL,ACCEL_VAL) # messed up a little trying to fix diagonal only
+	cur_accel = Vector2(MAX_SPEED / ACCEL_TIME,MAX_SPEED / ACCEL_TIME) # messed up a little trying to fix diagonal only
 	res.x = move_toward(velocity.x, MAX_SPEED * direction.x, cur_accel.x * delta)
 	res.y = move_toward(velocity.y, MAX_SPEED * direction.y, cur_accel.y * delta)
 	return res
