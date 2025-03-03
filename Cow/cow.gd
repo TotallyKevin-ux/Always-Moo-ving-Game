@@ -1,9 +1,14 @@
 class_name Cow
 extends CharacterBody2D
 
+@onready var timer = $"../Timer"
+
 const MAX_SPEED: int = 500 ## maximum speed in any direction
 const ACCEL_VAL: int = 20 ## static acceleration value in any direction
 const RESIST_VAL: int = 10 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
+const death_x = 0
+const death_y = 0
+
 var last_input_is_x: bool = false
 var cur_vel: Vector2 = Vector2(0,0) ## current movement speed + direction
 var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
@@ -15,11 +20,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
+func died():
+	position.x = death_x
+	position.y = death_y
+	timer.start()
+	timer.paused = false
+
+
+
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
-		print("hi")
-	else:
-		print("broken")
+		died()
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
@@ -59,3 +71,8 @@ func get_next_velocity() -> Vector2:
 	# clamp vel
 	cur_vel = cur_vel.clamp(Vector2(-MAX_SPEED,-MAX_SPEED), Vector2(MAX_SPEED,MAX_SPEED))
 	return cur_vel
+
+
+func _on_death_timer_timeout() -> void:
+	print("you died")
+	timer.paused = true
