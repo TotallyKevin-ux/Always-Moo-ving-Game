@@ -14,7 +14,6 @@ script = ExtResource("1_x0ndb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6vlq3")
-disabled = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]
 
