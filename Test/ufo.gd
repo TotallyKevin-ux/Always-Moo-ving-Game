@@ -14,17 +14,8 @@ func _physics_process(_delta: float):
 	move_and_slide()
 
 
-func path():
-	nav_agent.target_position = player.global_position
-
-func _on_timer_timeout():
-	path()
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-func _on_death_timer_timeout() -> void:
-	pass # Replace with function body.
-=======
->>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
-=======
->>>>>>> parent of 3b48312 (Death + reset)
+#func path():
+	#nav_agent.target_position = player.global_position
+#
+#func _on_timer_timeout():
+	#path()

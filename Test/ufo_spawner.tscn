@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqmhh42cxuicw"]
+
+[ext_resource type="Script" path="res://ufo_spawner.gd" id="1_vjwbp"]
+
+[node name="UFOSpawner" type="Node"]
+script = ExtResource("1_vjwbp")
+max = Vector2(1000, 1000)
+min = Vector2(200, 200)
+n_ufos = 45
