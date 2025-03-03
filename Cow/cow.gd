@@ -1,7 +1,9 @@
 class_name Cow
 extends CharacterBody2D
 
-@onready var timer = $"../Timer"
+
+@onready var timer = $"../Death Timer"
+
 
 const MAX_SPEED: int = 500 ## maximum speed in any direction
 const ACCEL_VAL: int = 20 ## static acceleration value in any direction
@@ -20,7 +22,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
 func died():
 	position.x = death_x
 	position.y = death_y
@@ -28,10 +29,10 @@ func died():
 	timer.paused = false
 
 
-
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
 		died()
+
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
@@ -74,5 +75,5 @@ func get_next_velocity() -> Vector2:
 
 
 func _on_death_timer_timeout() -> void:
-	print("you died")
+	print("now") 
 	timer.paused = true
