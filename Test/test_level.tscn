@@ -208,3 +208,22 @@ texture = ExtResource("3_tx8nj")
 [node name="UFO" parent="." node_paths=PackedStringArray("player") groups=["Enemy"] instance=ExtResource("4_ojgwv")]
 position = Vector2(427, 237)
 player = NodePath("../Cow")
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+<<<<<<< Updated upstream
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.06
+
+[connection signal="timeout" from="Timer" to="Cow" method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timer" to="UFO" method="_on_death_timer_timeout"]
+=======
+[node name="Death Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Death Timer" to="UFO" method="_on_death_timer_timeout"]
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
+=======
+>>>>>>> parent of 3b48312 (Death + reset)
