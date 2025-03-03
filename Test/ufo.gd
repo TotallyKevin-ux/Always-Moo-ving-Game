@@ -19,11 +19,6 @@ func path():
 
 func _on_timer_timeout():
 	path()
-<<<<<<< Updated upstream
-=======
-	
->>>>>>> Stashed changes
-
 
 func _on_death_timer_timeout() -> void:
 	pass # Replace with function body.
