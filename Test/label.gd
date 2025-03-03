@@ -2,7 +2,7 @@ extends Label
 
 var time_elapsed: float = 0.0
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	time_elapsed += delta
 	text = str(round_to(time_elapsed, 2))
 
