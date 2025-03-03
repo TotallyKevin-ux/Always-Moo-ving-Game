@@ -67,6 +67,7 @@ texture = ExtResource("3_tx8nj")
 position = Vector2(427, 237)
 player = NodePath("../Cow")
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< Updated upstream
 [node name="Timer" type="Timer" parent="."]
@@ -82,3 +83,5 @@ wait_time = 0.06
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
+=======
+>>>>>>> parent of 3b48312 (Death + reset)

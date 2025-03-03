@@ -2,12 +2,15 @@ class_name Cow
 extends CharacterBody2D
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 @onready var timer = $"../Death Timer"
 
 
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
+=======
+>>>>>>> parent of 3b48312 (Death + reset)
 const MAX_SPEED: int = 500 ## maximum speed in any direction
 const ACCEL_VAL: int = 20 ## static acceleration value in any direction
 const RESIST_VAL: int = 10 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
@@ -23,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 func died():
 	position.x = death_x
 	position.y = death_y
@@ -32,12 +36,17 @@ func died():
 
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
+=======
+>>>>>>> parent of 3b48312 (Death + reset)
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
 		print("hi")
 	else:
 		print("broken")
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 3b48312 (Death + reset)
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
@@ -78,6 +87,7 @@ func get_next_velocity() -> Vector2:
 	cur_vel = cur_vel.clamp(Vector2(-MAX_SPEED,-MAX_SPEED), Vector2(MAX_SPEED,MAX_SPEED))
 	return cur_vel
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 func _on_death_timer_timeout() -> void:
@@ -85,3 +95,5 @@ func _on_death_timer_timeout() -> void:
 	timer.paused = true
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
+=======
+>>>>>>> parent of 3b48312 (Death + reset)
