@@ -1,32 +1,64 @@
-extends CharacterBody2D
+[gd_scene load_steps=10 format=4 uid="uid://bkeehpr0lm0sk"]
 
-@export var player:Node2D
-@onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+[ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
+[ext_resource type="Texture2D" uid="uid://bqogw3w07cf14" path="res://Art/Capture.PNG" id="1_vpchw"]
+[ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="3_tx8nj"]
+[ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
+[ext_resource type="PackedScene" uid="uid://cuc1b74hod44t" path="res://ufo.tscn" id="4_ojgwv"]
 
-var active = false
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nu5hm"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+agent_radius = 0.0
 
-const SPEED = 150.0
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lkw7j"]
+texture = ExtResource("1_vpchw")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nu5hm")
 
-func _physics_process(_delta: float):
-	var next_path_pos := nav_agent.get_next_path_position()
-	var direction := global_position.direction_to(next_path_pos)
-	if active == true: 
-		velocity = direction * SPEED
-	else:
-		velocity = Vector2(0,0)
-	move_and_slide()
+[sub_resource type="TileSet" id="TileSet_au8ga"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_lkw7j")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ypbmb"]
+vertices = PackedVector2Array(755.969, 503.008, -757.961, 504.977, -754.031, -626.047, 753.023, -633.938)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-764, -636, -768, 515, 766, 513, 763, -644)])
 
-func path():
-	nav_agent.target_position = player.global_position
+@@ -43,44 +43,32 @@
 
-func _on_timer_timeout():
-	path()
+[node name="Tilemap" type="Node2D" parent="."]
 
-func _on_death_timer_timeout() -> void:
-	pass # Replace with function body.
+[node name="Cow" parent="." instance=ExtResource("1_ihw5m")]
+position = Vector2(-2, -3)
 
+[node name="Camera2D" type="Camera2D" parent="Cow"]
+process_callback = 0
 
-func _on_detection_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Player"):
-		active = true
+[node name="Label" type="Label" parent="Cow/Camera2D"]
+offset_left = -564.0
+offset_top = -313.0
+offset_right = -520.0
+offset_bottom = -287.0
+scale = Vector2(2.08, 1.78891)
+script = ExtResource("3_xo3ay")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-1, 2)
+scale = Vector2(5, 5)
+texture = ExtResource("3_tx8nj")
+
+[node name="UFO" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ojgwv")]
+position = Vector2(509, 279)
+player = NodePath("../Cow")
+
+[node name="Death Timer" type="Timer" parent="."]
+wait_time = 0.06
+
+[connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Death Timer" to="UFO" method="_on_death_timer_timeout"]
