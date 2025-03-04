@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://bkeehpr0lm0sk"]
+[gd_scene load_steps=8 format=4 uid="uid://bkeehpr0lm0sk"]
 
 [ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
 [ext_resource type="Texture2D" uid="uid://bqogw3w07cf14" path="res://Art/Capture.PNG" id="1_vpchw"]
-[ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="3_tx8nj"]
 [ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
-[ext_resource type="PackedScene" uid="uid://cuc1b74hod44t" path="res://ufo.tscn" id="4_ojgwv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nu5hm"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -61,15 +59,8 @@ script = ExtResource("3_xo3ay")
 z_index = -1
 position = Vector2(-1, 2)
 scale = Vector2(5, 5)
-texture = ExtResource("3_tx8nj")
-
-[node name="UFO" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ojgwv")]
-
-position = Vector2(509, 279)
-player = NodePath("../Cow")
 
 [node name="Death Timer" type="Timer" parent="."]
 wait_time = 0.06
 
 [connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]
-[connection signal="timeout" from="Death Timer" to="UFO" method="_on_death_timer_timeout"]
