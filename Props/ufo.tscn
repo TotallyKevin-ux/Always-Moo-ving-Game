@@ -4,40 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="2_eoq4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vlq3"]
-<<<<<<< Updated upstream:Props/ufo.tscn
-size = Vector2(62, 61)
-=======
+
 size = Vector2(64, 64)
->>>>>>> Stashed changes:ufo.tscn
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqh1e"]
 size = Vector2(64, 63)
 
-<<<<<<< Updated upstream:Props/ufo.tscn
-=======
 [sub_resource type="CircleShape2D" id="CircleShape2D_jsoyo"]
 radius = 499.785
 
->>>>>>> Stashed changes:ufo.tscn
+
 [node name="UFO" type="CharacterBody2D"]
 position = Vector2(-2, -3)
 script = ExtResource("1_x0ndb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-<<<<<<< Updated upstream:Props/ufo.tscn
+
 position = Vector2(0, 0.5)
-=======
->>>>>>> Stashed changes:ufo.tscn
+
 shape = SubResource("RectangleShape2D_6vlq3")
 
 [node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-<<<<<<< Updated upstream:Props/ufo.tscn
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_yqh1e")
 
-=======
 shape = SubResource("RectangleShape2D_yqh1e")
 
 [node name="Detection" type="Area2D" parent="."]
@@ -46,7 +37,6 @@ shape = SubResource("RectangleShape2D_yqh1e")
 light_mask = 3
 shape = SubResource("CircleShape2D_jsoyo")
 
->>>>>>> Stashed changes:ufo.tscn
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_eoq4w")
