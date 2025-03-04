@@ -27,7 +27,3 @@ func _on_death_timer_timeout() -> void:
 func _on_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		active = true
-
-func _on_detection_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Player"):
-		active = true
