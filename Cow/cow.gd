@@ -2,6 +2,12 @@ class_name Cow
 extends CharacterBody2D
 
 @onready var timer := $"../Death Timer"
+@onready var sliding_time := $Sliding
+@onready var can_slide_timer := $Slide
+@onready var stamina_bar := $stamina
+
+var can_slide = true
+var sliding = false
 
 const death_x = 0
 const death_y = 0
