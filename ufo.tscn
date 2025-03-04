@@ -1,28 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuc1b74hod44t"]
+[gd_scene load_steps=6 format=3 uid="uid://cuc1b74hod44t"]
 
 [ext_resource type="Script" path="res://Test/ufo.gd" id="1_x0ndb"]
 [ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="2_eoq4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vlq3"]
+<<<<<<< Updated upstream:ufo.tscn
+=======
+size = Vector2(64, 64)
+>>>>>>> Stashed changes:Props/ufo.tscn
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqh1e"]
 size = Vector2(64, 63)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsoyo"]
+radius = 280.401
+
 [node name="UFO" type="CharacterBody2D"]
-position = Vector2(-2, -3)
+position = Vector2(86, 15)
 script = ExtResource("1_x0ndb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+<<<<<<< Updated upstream:ufo.tscn
+=======
+position = Vector2(-86, -15)
+>>>>>>> Stashed changes:Props/ufo.tscn
 shape = SubResource("RectangleShape2D_6vlq3")
 disabled = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 0.5)
+position = Vector2(-86, -15)
 shape = SubResource("RectangleShape2D_yqh1e")
 
+[node name="Detection" type="Area2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+light_mask = 3
+position = Vector2(-87, -16)
+shape = SubResource("CircleShape2D_jsoyo")
+
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-86, -15)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_eoq4w")
 
@@ -33,4 +53,5 @@ process_callback = 0
 wait_time = 0.5
 autostart = true
 
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
