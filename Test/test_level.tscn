@@ -64,10 +64,6 @@ scale = Vector2(5, 5)
 texture = ExtResource("3_tx8nj")
 
 [node name="UFO" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ojgwv")]
-
-position = Vector2(274, 290)
-player = NodePath("../Cow")
-
 position = Vector2(509, 279)
 player = NodePath("../Cow")
 
