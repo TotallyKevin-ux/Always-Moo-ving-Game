@@ -1,12 +1,21 @@
 class_name Cow
 extends CharacterBody2D
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+
+const death_x = 0
+const death_y = 0
+var can_slide = true
+var sliding = false
+>>>>>>> Stashed changes
 
 @onready var timer = $"../Death Timer"
 
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
 =======
@@ -14,6 +23,12 @@ extends CharacterBody2D
 const MAX_SPEED: int = 500 ## maximum speed in any direction
 const ACCEL_VAL: int = 20 ## static acceleration value in any direction
 const RESIST_VAL: int = 10 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
+=======
+const MAX_SPEED: int = 500 ## maximum speed in any direction
+const ACCEL_VAL: int = 20 ## static acceleration value in any direction
+const RESIST_VAL: int = 10 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
+
+>>>>>>> Stashed changes
 var last_input_is_x: bool = false
 var cur_vel: Vector2 = Vector2(0,0) ## current movement speed + direction
 var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
@@ -25,8 +40,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+
+>>>>>>> Stashed changes
 func died():
 	position.x = death_x
 	position.y = death_y
@@ -34,6 +53,7 @@ func died():
 	timer.paused = false
 
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
 =======
@@ -47,6 +67,14 @@ func _on_area_2d_area_entered(area):
 
 =======
 >>>>>>> parent of 3b48312 (Death + reset)
+=======
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("Enemy"):
+		timer.start()
+		timer.paused = false
+
+>>>>>>> Stashed changes
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
@@ -91,9 +119,21 @@ func get_next_velocity() -> Vector2:
 
 
 func _on_death_timer_timeout() -> void:
+<<<<<<< Updated upstream
 	print("now") 
 	timer.paused = true
 =======
 >>>>>>> parent of d75b253 (Merge pull request #3 from TotallyKevin-ux/Pathfinding-for-Enemy)
 =======
 >>>>>>> parent of 3b48312 (Death + reset)
+=======
+	died()
+	print("now") 
+	timer.paused = true
+
+func _on_slide_timeout() -> void:
+	print("on slide timeout happened")
+	can_slide_timer.paused = true
+	stamina_bar.visible = false
+	can_slide = true
+>>>>>>> Stashed changes
