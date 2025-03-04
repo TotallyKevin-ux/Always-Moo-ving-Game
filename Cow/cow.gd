@@ -1,11 +1,10 @@
 class_name Cow
 extends CharacterBody2D
 
+@onready var timer := $"../Death Timer"
 
-@onready var timer = $"../Death Timer"
-
-death_x = 0
-death_y = 0
+const death_x = 0
+const death_y = 0
 
 const MAX_SPEED: int = 500 ## maximum speed in any direction
 const ACCEL_VAL: int = 20 ## static acceleration value in any direction
