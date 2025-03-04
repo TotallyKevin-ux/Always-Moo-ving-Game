@@ -5,12 +5,15 @@ extends CharacterBody2D
 @onready var sliding_time := $Sliding
 @onready var can_slide_timer := $Slide
 @onready var stamina_bar := $stamina
+@onready var hurt_box := $"Hurt Box"
 
 var can_slide = true
 var sliding = false
+var slide_vel = Vector2(0,0)
 
 const death_x = 0
 const death_y = 0
+
 
 const MAX_SPEED: int = 500 ## maximum speed in any direction
 const ACCEL_VAL: int = 20 ## static acceleration value in any direction
@@ -19,10 +22,20 @@ var last_input_is_x: bool = false
 var cur_vel: Vector2 = Vector2(0,0) ## current movement speed + direction
 var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
 
+func _ready():
+	stamina_bar.visible = false
 
-func _physics_process(delta: float) -> void:
+
+func _physics_process(_delta: float) -> void:
 	get_next_velocity()
-	set_velocity(cur_vel)
+	if(Input.is_action_pressed("space")):
+		sliding_func()
+		slide_vel = slide_vel.normalized() * 900
+	if sliding == false:
+		set_velocity(cur_vel)
+		slide_vel = cur_vel
+	else:
+		set_velocity(slide_vel)
 
 	move_and_slide()
 
@@ -35,14 +48,12 @@ func died():
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
-		print("hi")
-	else:
-		print("broken")
+		timer.start()
+		timer.paused = false
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
 	if(Input.is_action_pressed("up")):
-
 		cur_accel.y = -ACCEL_VAL
 		cur_accel.x = 0
 		last_input_is_x = false
@@ -78,8 +89,29 @@ func get_next_velocity() -> Vector2:
 	cur_vel = cur_vel.clamp(Vector2(-MAX_SPEED,-MAX_SPEED), Vector2(MAX_SPEED,MAX_SPEED))
 	return cur_vel
 
-
-
 func _on_death_timer_timeout() -> void:
 	print("now") 
 	timer.paused = true
+
+func sliding_func(): 
+	if can_slide == true:
+		print("2")
+		can_slide = false
+		hurt_box.process_mode = Node.PROCESS_MODE_DISABLED
+		sliding = true
+		stamina_bar.visible = true
+		stamina_bar.init_stamina(0)
+		can_slide_timer.start()
+		can_slide_timer.paused = false
+		sliding_time.start()
+		sliding_time.paused = false
+
+func _on_sliding_timeout() -> void:
+	sliding_time.paused = true
+	hurt_box.process_mode = Node.PROCESS_MODE_PAUSABLE
+	sliding = false
+
+func _on_slide_timeout() -> void:
+	can_slide_timer.paused = true
+	can_slide = true
+	stamina_bar.visible = false
