@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf3l6uf7riubo"]
+[gd_scene load_steps=6 format=3 uid="uid://cf3l6uf7riubo"]
 
-[ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="1_50f11"]
-[ext_resource type="Script" path="res://Cow/cow.gd" id="1_tbm2m"]
+[ext_resource type="Script" path="res://Cow/cow.gd" id="1_x618r"]
+[ext_resource type="Script" path="res://Cow/progress_bar.gd" id="2_nd5x0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dl0w"]
 size = Vector2(62, 62)
@@ -9,19 +9,40 @@ size = Vector2(62, 62)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vocfr"]
 size = Vector2(62, 62)
 
-[node name="Cow" type="CharacterBody2D"]
-script = ExtResource("1_tbm2m")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfqsc"]
+bg_color = Color(0.885635, 0.478807, 0.0397845, 1)
+
+[node name="Cow" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_x618r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_50f11")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0dl0w")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurt Box" type="Area2D" parent="." groups=["Player"]]
+process_mode = 1
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt Box"]
 shape = SubResource("RectangleShape2D_vocfr")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.0
+offset_top = -50.0
+offset_right = 27.0
+offset_bottom = -38.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_bfqsc")
+value = 50.0
+show_percentage = false
+script = ExtResource("2_nd5x0")
+
+[node name="Slide" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Sliding" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="Hurt Box" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Slide" to="." method="_on_slide_timeout"]
+[connection signal="timeout" from="Sliding" to="." method="_on_sliding_timeout"]
