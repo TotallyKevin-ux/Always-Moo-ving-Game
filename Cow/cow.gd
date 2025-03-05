@@ -2,6 +2,7 @@ class_name Cow
 extends CharacterBody2D
 
 @onready var timer := $"../Death Timer"
+@onready var sprite =$AnimatedSprite2D
 
 const death_x = 0
 const death_y = 0
@@ -15,8 +16,13 @@ var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
 
 
 func _physics_process(delta: float) -> void:
-	get_next_velocity()
+	cur_vel = get_next_velocity()
 	set_velocity(cur_vel)
+	
+	if cur_vel.length() > 0:	##sprite animation
+		sprite.play("walking")
+	else:
+		sprite.play("Idle")
 
 	move_and_slide()
 
