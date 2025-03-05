@@ -37,7 +37,7 @@ show_percentage = false
 script = ExtResource("2_nd5x0")
 
 [node name="Slide" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.0
 
 [node name="Sliding" type="Timer" parent="."]
 wait_time = 0.5

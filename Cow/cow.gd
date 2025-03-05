@@ -10,6 +10,7 @@ extends CharacterBody2D
 var can_slide = true
 var sliding = false
 var slide_vel = Vector2(0,0)
+var dash_speed = 900
 
 const death_x = 0
 const death_y = 0
@@ -29,13 +30,20 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	get_next_velocity()
 	if(Input.is_action_pressed("space")):
+		if(Input.is_action_pressed("up")):
+			velocity.y = -dash_speed
+		if(Input.is_action_pressed("down")):
+			velocity.y = dash_speed
+		if(Input.is_action_pressed("left")):
+			velocity.x = -dash_speed
+		if(Input.is_action_pressed("right")):
+			velocity.x = dash_speed
 		sliding_func()
-		slide_vel = slide_vel.normalized() * 900
 	if sliding == false:
 		set_velocity(cur_vel)
 		slide_vel = cur_vel
 	else:
-		set_velocity(slide_vel)
+		pass
 
 	move_and_slide()
 
@@ -95,12 +103,11 @@ func _on_death_timer_timeout() -> void:
 
 func sliding_func(): 
 	if can_slide == true:
-		print("2")
 		can_slide = false
 		hurt_box.process_mode = Node.PROCESS_MODE_DISABLED
 		sliding = true
 		stamina_bar.visible = true
-		stamina_bar.init_stamina(0)
+		stamina_bar.init_stamina(180)
 		can_slide_timer.start()
 		can_slide_timer.paused = false
 		sliding_time.start()
