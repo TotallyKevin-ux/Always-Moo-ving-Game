@@ -46,6 +46,9 @@ wait_time = 0.5
 scale = Vector2(0.100248, 0.10791)
 texture = ExtResource("3_jcut0")
 
+[node name="InputGrace" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Hurt Box" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Slide" to="." method="_on_slide_timeout"]
 [connection signal="timeout" from="Sliding" to="." method="_on_sliding_timeout"]
+[connection signal="timeout" from="InputGrace" to="." method="_on_mov_grace_timeout"]
