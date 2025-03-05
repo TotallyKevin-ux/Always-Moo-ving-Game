@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf07lvfk5peb"]
+[gd_scene load_steps=3 format=3 uid="uid://bf07lvfk5peb"]
 
+[ext_resource type="Script" path="res://Test/ufo.gd" id="1_c0mxi"]
 [ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="1_uqtek"]
 
 [node name="UFO" type="CharacterBody2D"]
+script = ExtResource("1_c0mxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uqtek")
