@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://0l3j7rm6j30"]
+
+[ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="1_0rcg3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa1yr"]
+size = Vector2(80, 52)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0rcg3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sa1yr")
