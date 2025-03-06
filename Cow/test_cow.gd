@@ -9,7 +9,6 @@ var cur_vel: Vector2 = Vector2(0,0) ## current movement speed + direction
 var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
 var direction: Vector2 = Vector2(0,0)
 
-
 func _physics_process(delta: float) -> void:
 	direction  = get_direction()
 	cur_vel = get_next_velocity(delta)
@@ -25,7 +24,8 @@ func _on_area_2d_area_entered(area):
 ## gets movement directionaa
 func get_next_velocity(delta: float) -> Vector2:
 	var res := Vector2.ZERO
-	cur_accel = Vector2(MAX_SPEED / ACCEL_TIME,MAX_SPEED / ACCEL_TIME) # messed up a little trying to fix diagonal only
+	#cur_accel = substract_vectors(get_direction(), velocity.normalized()) * MAX_SPEED / ACCEL_TIME # messed up a little trying to fix diagonal only
+	cur_accel = Vector2(1, -1 / (velocity.y / velocity.x)).normalized()
 	res.x = move_toward(velocity.x, MAX_SPEED * direction.x, cur_accel.x * delta)
 	res.y = move_toward(velocity.y, MAX_SPEED * direction.y, cur_accel.y * delta)
 	return res
@@ -44,3 +44,8 @@ func get_direction() -> Vector2:
 	if(res == Vector2.ZERO):
 		res = velocity # Should be direction instead of velocity if we'll include grace time or smth like that
 	return res.normalized()
+
+#cur_accel = get_direction() * MAX_SPEED - velocity
+
+func substract_vectors(A: Vector2,B: Vector2):
+	return Vector2((A.x - B.x), (A.y - B.y))
