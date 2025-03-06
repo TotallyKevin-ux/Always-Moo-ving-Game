@@ -186,6 +186,8 @@ wait_time = 3.0
 wait_time = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.308917, 0.287879)
 sprite_frames = SubResource("SpriteFrames_167dg")
 animation = &"idle"
 

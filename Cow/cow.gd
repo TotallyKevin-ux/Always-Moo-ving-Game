@@ -39,24 +39,25 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	cur_vel = get_next_velocity()
-	set_velocity(cur_vel)
 	if cur_vel.length() > 0:	##sprite animation
 		sprite.play("walking")
 	else:
 		sprite.play("idle")
+	
+	
 	if(Input.is_action_pressed("space")):
-		if(Input.is_action_pressed("up")):
-			velocity.y = -dash_speed
-		if(Input.is_action_pressed("down")):
-			velocity.y = dash_speed
-		if(Input.is_action_pressed("left")):
-			velocity.x = -dash_speed
-		if(Input.is_action_pressed("right")):
-			velocity.x = dash_speed
-		sliding_func()
+		if can_slide == true:
+			if(Input.is_action_pressed("up")):
+				velocity.y = -dash_speed
+			if(Input.is_action_pressed("down")):
+				velocity.y = dash_speed
+			if(Input.is_action_pressed("left")):
+				velocity.x = -dash_speed
+			if(Input.is_action_pressed("right")):
+				velocity.x = dash_speed
+			sliding_func()
 	if sliding == false:
 		set_velocity(cur_vel)
-		slide_vel = cur_vel
 	else:
 		pass
 
@@ -143,21 +144,19 @@ func _on_death_timer_timeout() -> void:
 	timer.paused = true
 
 func sliding_func(): 
-	if can_slide == true:
-		can_slide = false
-		hurt_box.process_mode = Node.PROCESS_MODE_DISABLED
-		sliding = true
-		stamina_bar.visible = true
-		stamina_bar_4.visible = true
-		stamina_bar.init_stamina(180)
-		stamina_bar_4.init_stamina(180)
-		can_slide_timer.start()
-		can_slide_timer.paused = false
-		sliding_time.start()
-		sliding_time.paused = false
-		dash_box.add_to_group("Dashing")
-		dash_box.process_mode = Node.PROCESS_MODE_PAUSABLE
-
+	can_slide = false
+	hurt_box.process_mode = Node.PROCESS_MODE_DISABLED
+	sliding = true
+	stamina_bar.visible = true
+	stamina_bar_4.visible = true
+	stamina_bar.init_stamina(180)
+	stamina_bar_4.init_stamina(180)
+	can_slide_timer.start()
+	can_slide_timer.paused = false
+	sliding_time.start()
+	sliding_time.paused = false
+	dash_box.add_to_group("Dashing")
+	dash_box.process_mode = Node.PROCESS_MODE_PAUSABLE
 func _on_sliding_timeout() -> void:
 	sliding_time.paused = true
 	hurt_box.process_mode = Node.PROCESS_MODE_PAUSABLE
