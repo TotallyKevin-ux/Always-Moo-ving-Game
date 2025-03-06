@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0wsu6auu13gs"]
+[gd_scene load_steps=4 format=3 uid="uid://b0wsu6auu13gs"]
 
 [ext_resource type="Script" path="res://UI/options_menu.gd" id="1_wmdde"]
+[ext_resource type="Texture2D" uid="uid://cc4jxcnxim7ep" path="res://UI/optionsmainmenu.png" id="2_6iu7p"]
+[ext_resource type="Texture2D" uid="uid://dp6k677kxlm3s" path="res://UI/bell.PNG" id="3_7u1mo"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -11,44 +13,76 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wmdde")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 13.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="OptionLabel" type="Label" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -62.0
+offset_right = 124.0
+offset_bottom = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 30
+
+[node name="MainMenuBtn" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="StoryBtn" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Story"
+
+[node name="HowPlayBtn" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "How to Play"
+
+[node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "Options
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -764.0
+offset_top = -247.0
+offset_right = -367.0
+offset_bottom = 263.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+texture = ExtResource("2_6iu7p")
+stretch_mode = 5
 
-[node name="VolumeLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Volume"
+[node name="Volume" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 199.0
+offset_right = 684.0
+offset_bottom = 239.0
+theme_override_icons/grabber = ExtResource("3_7u1mo")
+theme_override_icons/grabber_highlight = ExtResource("3_7u1mo")
 
-[node name="Volume" type="HSlider" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="MuteLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Mute"
-
-[node name="Mute" type="CheckBox" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="BackButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(300, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
-text = "Back to Menu"
-
-[connection signal="value_changed" from="VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
-[connection signal="toggled" from="VBoxContainer/Mute" to="." method="_on_mute_toggled"]
-[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="GridContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
+[connection signal="pressed" from="GridContainer/StoryBtn" to="." method="_on_story_btn_pressed"]
+[connection signal="pressed" from="GridContainer/HowPlayBtn" to="." method="_on_how_play_btn_pressed"]
