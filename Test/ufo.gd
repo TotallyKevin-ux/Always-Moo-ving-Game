@@ -14,6 +14,8 @@ var tracking = true
 var dash_direction = Vector2.ZERO
 var target_position
 
+const death_x = 500
+const death_y = 500
 const SPEED = 300.0
 
 func _physics_process(_delta: float):
@@ -32,7 +34,8 @@ func _physics_process(_delta: float):
 	move_and_slide()
 
 func _on_death_timer_timeout() -> void:
-	pass # Replace with function body.
+	position.x = death_x
+	position.y = death_y
 
 func _on_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
