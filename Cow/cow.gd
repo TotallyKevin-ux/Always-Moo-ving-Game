@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	if cur_vel.length() > 0:	##sprite animation
 		sprite.play("walking")
 	else:
-		sprite.play("Idle")
+		sprite.play("idle")
 	if(Input.is_action_pressed("space")):
 		if(Input.is_action_pressed("up")):
 			velocity.y = -dash_speed

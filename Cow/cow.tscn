@@ -1,10 +1,7 @@
-
-[gd_scene load_steps=20 format=3 uid="uid://cf3l6uf7riubo"]
-
+[gd_scene load_steps=21 format=3 uid="uid://cf3l6uf7riubo"]
 
 [ext_resource type="Script" path="res://Cow/test_cow.gd" id="1_puokb"]
 [ext_resource type="Script" path="res://Cow/progress_bar.gd" id="2_nd5x0"]
-
 [ext_resource type="Texture2D" uid="uid://dvx4lgmmked7a" path="res://Art/MooCow.svg" id="3_1sauq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dl0w"]
@@ -188,12 +185,9 @@ wait_time = 3.0
 [node name="Sliding" type="Timer" parent="."]
 wait_time = 0.5
 
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_167dg")
-animation = &"walking"
-frame_progress = 0.502068
-
+animation = &"idle"
 
 [node name="InputGrace" type="Timer" parent="."]
 
