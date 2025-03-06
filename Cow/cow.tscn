@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Cow/test_cow.gd" id="1_puokb"]
 [ext_resource type="Script" path="res://Cow/progress_bar.gd" id="2_nd5x0"]
 
-[ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="3_jcut0"]
+[ext_resource type="Texture2D" uid="uid://dvx4lgmmked7a" path="res://Art/MooCow.svg" id="3_1sauq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dl0w"]
 size = Vector2(62, 62)

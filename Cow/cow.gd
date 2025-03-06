@@ -100,7 +100,6 @@ func get_next_velocity() -> Vector2:
 	return cur_vel
 
 func _input(event):
-	#print(event.as_text())
 	if event.is_action_pressed("up"):
 		input_held[UP] = true
 		cur_accel.y = -ACCEL_VAL
@@ -184,4 +183,3 @@ func _on_mov_grace_timeout() -> void:
 			cur_accel.x = 0
 		if not y_input_held():
 			cur_accel.y = 0
-

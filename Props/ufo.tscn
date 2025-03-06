@@ -1,8 +1,6 @@
-
-[gd_scene load_steps=6 format=3 uid="uid://bf07lvfk5peb"]
+[gd_scene load_steps=6 format=3 uid="uid://cuc1b74hod44t"]
 
 [ext_resource type="Script" path="res://Test/ufo.gd" id="1_sayms"]
-
 [ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="1_uqtek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_20qgq"]
@@ -15,8 +13,6 @@ radius = 266.002
 radius = 2081.08
 
 [node name="UFO" type="CharacterBody2D"]
-
-
 script = ExtResource("1_sayms")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -31,7 +27,6 @@ simplify_path = true
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_20qgq")
 one_way_collision_margin = 0.0
-
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uqtek")
