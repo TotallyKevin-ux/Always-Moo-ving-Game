@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://1ab1fpgtgplk"]
+[gd_scene load_steps=2 format=3 uid="uid://rwmbo507rr54"]
 
-[ext_resource type="Script" path="res://paused_menu.gd" id="1_ugqvy"]
+[sub_resource type="GDScript" id="GDScript_5pttv"]
+script/source = "extends Control
+
+var _is_paused:bool = false:
+	set = set_paused
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event .is_action_pressed(\"escape\"):
+		_is_paused = !_is_paused
+	
+
+func set_paused(value:bool) ->void:
+	_is_paused = value
+	get_tree().paused = _is_paused
+	visible = _is_paused
+
+func _on_resume_btn_pressed() -> void:
+	_is_paused = false
+
+func _on_how_play_btn_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_main_menu_btn_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://UI/start.tscn\")
+"
 
 [node name="PausedMenu" type="Control"]
 process_mode = 3
@@ -10,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ugqvy")
+script = SubResource("GDScript_5pttv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -19,7 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.701961)
+color = Color(1, 1, 1, 0.529412)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -39,16 +64,15 @@ theme_override_constants/v_separation = 8
 [node name="Label" type="Label" parent="GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Paused
-"
+text = "Paused"
 
 [node name="ResumeBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
-text = "Resume Game"
+text = "Resume"
 
 [node name="HowPlayBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
-text = "How to Play"
+text = "How To Play"
 
 [node name="MainMenuBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
