@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ab1fpgtgplk"]
+
+[ext_resource type="Script" path="res://paused_menu.gd" id="1_ugqvy"]
+
+[node name="PausedMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ugqvy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.701961)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 8
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Paused
+"
+
+[node name="ResumeBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Resume Game"
+
+[node name="HowPlayBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "How to Play"
+
+[node name="MainMenuBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="GridContainer/HowPlayBtn" to="." method="_on_how_play_btn_pressed"]
+[connection signal="pressed" from="GridContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]

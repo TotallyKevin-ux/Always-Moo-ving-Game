@@ -83,4 +83,5 @@ func is_valid_tile(tile: String, x: int, y: int) -> bool:
 					var neighbor_tile = grid[neighbor_x][neighbor_y]
 					if adjacency[tile][neighbor_tile] == 0:
 						return false
+						
 	return true

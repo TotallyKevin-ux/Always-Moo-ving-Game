@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck5vt3an2jvqm"]
+[gd_scene load_steps=3 format=3 uid="uid://ck5vt3an2jvqm"]
 
 [ext_resource type="Script" path="res://UI/start.gd" id="1_hleet"]
+[ext_resource type="PackedScene" uid="uid://b0wsu6auu13gs" path="res://UI/options_menu.tscn" id="2_upcyg"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -36,6 +37,10 @@ text = "Option"
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("2_upcyg")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]

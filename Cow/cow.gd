@@ -2,6 +2,8 @@ class_name Cow
 extends CharacterBody2D
 
 @onready var timer := $"../Death Timer"
+
+@onready var sprite =$AnimatedSprite2D
 @onready var sliding_time := $Sliding
 @onready var can_slide_timer := $Slide
 @onready var stamina_bar := $stamina
@@ -10,6 +12,7 @@ extends CharacterBody2D
 var can_slide = true
 var sliding = false
 var slide_vel = Vector2(0,0)
+
 
 const death_x = 0
 const death_y = 0
@@ -26,8 +29,14 @@ func _ready():
 	stamina_bar.visible = false
 
 
-func _physics_process(_delta: float) -> void:
-	get_next_velocity()
+
+func _physics_process(delta: float) -> void:
+	cur_vel = get_next_velocity()
+	set_velocity(cur_vel)
+	if cur_vel.length() > 0:	##sprite animation
+		sprite.play("walking")
+	else:
+		sprite.play("Idle")
 	if(Input.is_action_pressed("space")):
 		sliding_func()
 		slide_vel = slide_vel.normalized() * 900
@@ -36,6 +45,7 @@ func _physics_process(_delta: float) -> void:
 		slide_vel = cur_vel
 	else:
 		set_velocity(slide_vel)
+
 
 	move_and_slide()
 
