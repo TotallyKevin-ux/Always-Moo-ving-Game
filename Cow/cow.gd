@@ -5,7 +5,9 @@ extends CharacterBody2D
 @onready var sliding_time := $Sliding
 @onready var can_slide_timer := $Slide
 @onready var stamina_bar := $stamina
+@onready var stamina_bar_4 := $stamina3
 @onready var hurt_box := $"Hurt Box"
+@onready var dash_box := $Area2D
 
 var can_slide = true
 var sliding = false
@@ -25,6 +27,7 @@ var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
 
 func _ready():
 	stamina_bar.visible = false
+	stamina_bar_4.visible = false
 
 
 func _physics_process(_delta: float) -> void:
@@ -52,7 +55,6 @@ func died():
 	position.y = death_y
 	timer.start()
 	timer.paused = false
-
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
@@ -107,18 +109,24 @@ func sliding_func():
 		hurt_box.process_mode = Node.PROCESS_MODE_DISABLED
 		sliding = true
 		stamina_bar.visible = true
+		stamina_bar_4.visible = true
 		stamina_bar.init_stamina(180)
+		stamina_bar_4.init_stamina(180)
 		can_slide_timer.start()
 		can_slide_timer.paused = false
 		sliding_time.start()
 		sliding_time.paused = false
+		dash_box.add_to_group("Dashing")
+		dash_box.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _on_sliding_timeout() -> void:
 	sliding_time.paused = true
 	hurt_box.process_mode = Node.PROCESS_MODE_PAUSABLE
 	sliding = false
+	dash_box.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_slide_timeout() -> void:
 	can_slide_timer.paused = true
 	can_slide = true
 	stamina_bar.visible = false
+	stamina_bar_4.visible = false

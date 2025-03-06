@@ -48,7 +48,7 @@ func _on_can_dash_area_entered(area: Area2D) -> void:
 			begin_dash.paused = false
 
 func _on_begin_dash_timeout() -> void:
-	begin_dash.paused = false
+	begin_dash.paused = true
 	begin_dash_ani = false
 	sliding_func()
 

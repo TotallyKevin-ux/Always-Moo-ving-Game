@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://bkeehpr0lm0sk"]
+[gd_scene load_steps=10 format=4 uid="uid://bkeehpr0lm0sk"]
 
 [ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
 [ext_resource type="Texture2D" uid="uid://bqogw3w07cf14" path="res://Art/Capture.PNG" id="1_vpchw"]
+[ext_resource type="PackedScene" uid="uid://0l3j7rm6j30" path="res://Props/alien.farmer.tscn" id="2_g6b1p"]
 [ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
 [ext_resource type="PackedScene" uid="uid://bf07lvfk5peb" path="res://Props/ufo.tscn" id="4_5buyb"]
 
@@ -36,12 +37,13 @@ tile_set = SubResource("TileSet_au8ga")
 rendering_quadrant_size = 600
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(7, -5)
 navigation_polygon = SubResource("NavigationPolygon_cu2ub")
 
 [node name="Tilemap" type="Node2D" parent="."]
 
 [node name="Cow" parent="." instance=ExtResource("1_ihw5m")]
-position = Vector2(-2, -3)
+position = Vector2(-2, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Cow"]
 process_callback = 0
@@ -65,6 +67,10 @@ wait_time = 0.06
 [node name="UFO" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_5buyb")]
 position = Vector2(365, 222)
 scale = Vector2(0.1, 0.1)
+player = NodePath("../Cow")
+
+[node name="Alien_farmer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_g6b1p")]
+position = Vector2(-474, 250)
 player = NodePath("../Cow")
 
 [connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]
