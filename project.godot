@@ -24,6 +24,7 @@ project/assembly_name="New Game Project"
 Navigation=""
 Enemy=""
 Player=""
+dashing=""
 
 [input]
 

@@ -2,16 +2,13 @@ class_name Cow
 extends CharacterBody2D
 
 @onready var timer := $"../Death Timer"
-
 @onready var sprite =$AnimatedSprite2D
 @onready var sliding_time := $Sliding
 @onready var can_slide_timer := $Slide
 @onready var stamina_bar := $stamina
 @onready var stamina_bar_4 := $stamina3
 @onready var hurt_box := $"Hurt Box"
-
 @onready var dash_box := $Area2D
-
 @onready var input_grace_timer := $InputGrace
 
 
@@ -171,7 +168,6 @@ func _on_slide_timeout() -> void:
 	can_slide_timer.paused = true
 	can_slide = true
 	stamina_bar.visible = false
-
 	stamina_bar_4.visible = false
 
 

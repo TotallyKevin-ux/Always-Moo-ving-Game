@@ -18,7 +18,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Wall"):
-		queue_free()
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("range"):
+		queue_free() # Replace with function body.
