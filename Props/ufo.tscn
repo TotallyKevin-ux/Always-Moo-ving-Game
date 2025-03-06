@@ -47,7 +47,7 @@ shape = SubResource("CircleShape2D_xml5h")
 debug_color = Color(0.929711, 2.9456e-05, 0.659659, 0.42)
 
 [node name="Can_slide" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 3.0
 
 [node name="Sliding" type="Timer" parent="."]
 wait_time = 0.5
