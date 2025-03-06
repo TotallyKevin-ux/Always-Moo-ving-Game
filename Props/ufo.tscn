@@ -1,10 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf07lvfk5peb"]
 
-[ext_resource type="Script" path="res://Test/ufo.gd" id="1_c0mxi"]
+[gd_scene load_steps=6 format=3 uid="uid://bf07lvfk5peb"]
+
+[ext_resource type="Script" path="res://Test/ufo.gd" id="1_sayms"]
+
 [ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="1_uqtek"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_20qgq"]
+radius = 1810.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34x3l"]
+radius = 266.002
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xml5h"]
+radius = 2081.08
+
 [node name="UFO" type="CharacterBody2D"]
-script = ExtResource("1_c0mxi")
+
+
+script = ExtResource("1_sayms")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+path_max_distance = 1000.0
+simplify_path = true
+
+[node name="Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_20qgq")
+one_way_collision_margin = 0.0
+
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uqtek")
+
+[node name="Dmg" type="Area2D" parent="." groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dmg"]
+z_index = 1
+shape = SubResource("CircleShape2D_34x3l")
+debug_color = Color(1, 0.000332343, 0.0836744, 0.42)
+
+[node name="Can_dash" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Can_dash"]
+z_index = 2
+shape = SubResource("CircleShape2D_xml5h")
+debug_color = Color(0.929711, 2.9456e-05, 0.659659, 0.42)
+
+[node name="Can_slide" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Sliding" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="Begin_dash" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="area_entered" from="Collision" to="." method="_on_detection_area_entered"]
+[connection signal="area_entered" from="Can_dash" to="." method="_on_can_dash_area_entered"]
+[connection signal="timeout" from="Can_slide" to="." method="_on_can_slide_timeout"]
+[connection signal="timeout" from="Sliding" to="." method="_on_sliding_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Begin_dash" to="." method="_on_begin_dash_timeout"]

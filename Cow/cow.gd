@@ -7,12 +7,18 @@ extends CharacterBody2D
 @onready var sliding_time := $Sliding
 @onready var can_slide_timer := $Slide
 @onready var stamina_bar := $stamina
+@onready var stamina_bar_4 := $stamina3
 @onready var hurt_box := $"Hurt Box"
+
+@onready var dash_box := $Area2D
+
 @onready var input_grace_timer := $InputGrace
+
 
 var can_slide = true
 var sliding = false
 var slide_vel = Vector2(0,0)
+var dash_speed = 900
 
 
 const death_x = 0
@@ -30,6 +36,7 @@ var cur_accel: Vector2 = Vector2(0,0) ## current acceleration value
 
 func _ready():
 	stamina_bar.visible = false
+	stamina_bar_4.visible = false
 
 
 
@@ -41,13 +48,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		sprite.play("Idle")
 	if(Input.is_action_pressed("space")):
+		if(Input.is_action_pressed("up")):
+			velocity.y = -dash_speed
+		if(Input.is_action_pressed("down")):
+			velocity.y = dash_speed
+		if(Input.is_action_pressed("left")):
+			velocity.x = -dash_speed
+		if(Input.is_action_pressed("right")):
+			velocity.x = dash_speed
 		sliding_func()
-		slide_vel = slide_vel.normalized() * 900
 	if sliding == false:
 		set_velocity(cur_vel)
 		slide_vel = cur_vel
 	else:
-		set_velocity(slide_vel)
+		pass
 
 
 	move_and_slide()
@@ -57,7 +71,6 @@ func died():
 	position.y = death_y
 	timer.start()
 	timer.paused = false
-
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
@@ -135,26 +148,32 @@ func _on_death_timer_timeout() -> void:
 
 func sliding_func(): 
 	if can_slide == true:
-		print("2")
 		can_slide = false
 		hurt_box.process_mode = Node.PROCESS_MODE_DISABLED
 		sliding = true
 		stamina_bar.visible = true
-		stamina_bar.init_stamina(0)
+		stamina_bar_4.visible = true
+		stamina_bar.init_stamina(180)
+		stamina_bar_4.init_stamina(180)
 		can_slide_timer.start()
 		can_slide_timer.paused = false
 		sliding_time.start()
 		sliding_time.paused = false
+		dash_box.add_to_group("Dashing")
+		dash_box.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _on_sliding_timeout() -> void:
 	sliding_time.paused = true
 	hurt_box.process_mode = Node.PROCESS_MODE_PAUSABLE
 	sliding = false
+	dash_box.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_slide_timeout() -> void:
 	can_slide_timer.paused = true
 	can_slide = true
 	stamina_bar.visible = false
+
+	stamina_bar_4.visible = false
 
 
 func _on_mov_grace_timeout() -> void:
@@ -165,3 +184,4 @@ func _on_mov_grace_timeout() -> void:
 			cur_accel.x = 0
 		if not y_input_held():
 			cur_accel.y = 0
+
