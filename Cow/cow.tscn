@@ -8,7 +8,7 @@
 size = Vector2(38, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q767b"]
-size = Vector2(45, 49)
+size = Vector2(60, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vocfr"]
 size = Vector2(45, 49)
@@ -164,8 +164,8 @@ shape = SubResource("RectangleShape2D_vocfr")
 
 [node name="stamina" type="ProgressBar" parent="."]
 offset_left = -32.0
-offset_top = -45.0
-offset_bottom = -33.0
+offset_top = -43.0
+offset_bottom = -31.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_bfqsc")
 value = 50.0
 fill_mode = 1
@@ -173,9 +173,9 @@ show_percentage = false
 script = ExtResource("2_nd5x0")
 
 [node name="stamina3" type="ProgressBar" parent="."]
-offset_top = -45.0
+offset_top = -43.0
 offset_right = 32.0
-offset_bottom = -33.0
+offset_bottom = -31.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_bfqsc")
 value = 50.0
 show_percentage = false

@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=4 uid="uid://bkeehpr0lm0sk"]
+[gd_scene load_steps=14 format=4 uid="uid://bkeehpr0lm0sk"]
 
 [ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
 [ext_resource type="Texture2D" uid="uid://bqogw3w07cf14" path="res://Art/Capture.PNG" id="1_vpchw"]
-[ext_resource type="PackedScene" uid="uid://0l3j7rm6j30" path="res://Props/alien.farmer.tscn" id="2_g6b1p"]
 [ext_resource type="Texture2D" uid="uid://bf07lvfk5peb" path="res://Art/icon.svg" id="2_y8bdj"]
 [ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
-[ext_resource type="PackedScene" uid="uid://cuc1b74hod44t" path="res://Props/ufo.tscn" id="4_5buyb"]
 [ext_resource type="Script" path="res://Cow/cow.gd" id="4_6obgl"]
 [ext_resource type="PackedScene" uid="uid://bj6hdgk8a7ny3" path="res://Key.tscn" id="8_bwi5g"]
+[ext_resource type="PackedScene" uid="uid://dvlr6rm6fcyv0" path="res://Props/Grass.tscn" id="9_g015r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iinng"]
 vertices = PackedVector2Array(745.969, 496.938, -767.859, 488.047, -753.133, -613.109, 743.023, -630.883)
@@ -209,17 +208,12 @@ scale = Vector2(5, 5)
 [node name="Death Timer" type="Timer" parent="."]
 wait_time = 0.06
 
-[node name="UFO" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_5buyb")]
-position = Vector2(365, 222)
-scale = Vector2(0.1, 0.1)
-player = NodePath("../Cow")
-
-[node name="Alien_farmer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_g6b1p")]
-position = Vector2(-474, 250)
-player = NodePath("../Cow")
-
 [node name="Coin" parent="." instance=ExtResource("8_bwi5g")]
 position = Vector2(-353, -42)
 scale = Vector2(0.4, 0.4)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("9_g015r")]
+position = Vector2(-332, 76)
+scale = Vector2(3, 3)
 
 [connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]

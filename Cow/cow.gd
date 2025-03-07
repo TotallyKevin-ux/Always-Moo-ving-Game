@@ -35,8 +35,6 @@ func _ready():
 	stamina_bar.visible = false
 	stamina_bar_4.visible = false
 
-
-
 func _physics_process(delta: float) -> void:
 	cur_vel = get_next_velocity()
 	if cur_vel.length() > 0:	##sprite animation
@@ -143,7 +141,8 @@ func y_input_held() -> bool:
 	return input_held[UP] or input_held[DOWN]
 
 func _on_death_timer_timeout() -> void:
-	print("now") 
+	position.x = death_x
+	position.y = death_y
 	timer.paused = true
 
 func sliding_func(): 
@@ -158,7 +157,7 @@ func sliding_func():
 	can_slide_timer.paused = false
 	sliding_time.start()
 	sliding_time.paused = false
-	dash_box.add_to_group("Dashing")
+	dash_box.add_to_group("dashing")
 	dash_box.process_mode = Node.PROCESS_MODE_PAUSABLE
 func _on_sliding_timeout() -> void:
 	sliding_time.paused = true

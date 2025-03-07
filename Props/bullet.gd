@@ -3,7 +3,7 @@ extends CharacterBody2D
 var pos:Vector2
 var rota:float
 var dir:float
-var speed = 2000
+var speed = 1600
 
 
 # Called when the node enters the scene tree for the first time.

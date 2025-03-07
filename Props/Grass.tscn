@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvlr6rm6fcyv0"]
+
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="1_0glka"]
+[ext_resource type="Texture2D" uid="uid://6f023x8nqide" path="res://Art/GrassTreeRockUPDATE.svg" id="2_11ol5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sam54"]
+size = Vector2(31.1875, 25.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6qm3"]
+size = Vector2(50, 34.375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_172rj"]
+atlas = ExtResource("2_11ol5")
+region = Rect2(0, 1754, 2480, 1754)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4dix"]
+atlas = ExtResource("2_11ol5")
+region = Rect2(2480, 1754, 2480, 1754)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jmf5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_172rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4dix")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_0glka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.59375, 0)
+shape = SubResource("RectangleShape2D_sam54")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_s6qm3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.0129032, 0.0131129)
+sprite_frames = SubResource("SpriteFrames_7jmf5")
+frame_progress = 0.488136
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
