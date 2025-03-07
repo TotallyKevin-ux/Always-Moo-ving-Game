@@ -1,42 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://rwmbo507rr54"]
 
-[ext_resource type="Texture2D" uid="uid://c2y7l375e0yam" path="res://Art/optionsingame.png" id="1_hx1dx"]
+[ext_resource type="Texture2D" uid="uid://cnw81pbna3gwe" path="res://Art/optionsingame.png" id="1_hx1dx"]
+[ext_resource type="Script" path="res://UI/paused_menu.gd" id="1_stymi"]
 [ext_resource type="Texture2D" uid="uid://dp6k677kxlm3s" path="res://Art/bell.PNG" id="2_xl6f1"]
-
-[sub_resource type="GDScript" id="GDScript_5pttv"]
-script/source = "extends Control
-
-var _is_paused:bool = false:
-	set = set_paused
-	
-func _unhandled_input(event: InputEvent) -> void:
-	if event .is_action_pressed(\"escape\"):
-		_is_paused = !_is_paused
-	
-
-func set_paused(value:bool) ->void:
-	_is_paused = value
-	get_tree().paused = _is_paused
-	visible = _is_paused
-
-func _on_resume_btn_pressed() -> void:
-	_is_paused = false
-
-func _on_how_play_btn_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://UI/how_to_play.tscn\")
-
-
-func _on_main_menu_btn_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://UI/start.tscn\")
-
-
-func _on_story_btn_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_volume_value_changed(value: float):
-	AudioServer.set_bus_volume_db(0,value)
-"
 
 [node name="PausedMenu" type="Control"]
 process_mode = 3
@@ -46,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_5pttv")
+script = ExtResource("1_stymi")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -64,60 +30,68 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = -77.0
-offset_right = 84.0
-offset_bottom = 149.0
+offset_left = -119.0
+offset_top = -100.0
+offset_right = 81.0
+offset_bottom = 194.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/v_separation = 8
+theme_override_constants/v_separation = 30
 
 [node name="ResumeBtn" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Resume"
 
 [node name="MainMenuBtn" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Main Menu"
 
 [node name="StoryBtn" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Story"
 
 [node name="HowPlayBtn" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "How To Play"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -197.0
-offset_top = -254.0
-offset_right = 197.0
-offset_bottom = 254.0
+anchors_preset = -1
+anchor_left = 0.286458
+anchor_top = 0.00462963
+anchor_right = 0.723958
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_hx1dx")
+metadata/_edit_use_anchors_ = true
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 541.0
-offset_top = 179.0
-offset_right = 662.0
-offset_bottom = 242.0
+anchor_left = 0.470486
+anchor_top = 0.229938
+anchor_right = 0.601563
+anchor_bottom = 0.327161
+offset_bottom = -1.52588e-05
 theme_override_icons/grabber = ExtResource("2_xl6f1")
 theme_override_icons/grabber_highlight = ExtResource("2_xl6f1")
+metadata/_edit_use_anchors_ = true
+
+[node name="CloseBtn" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.606771
+anchor_top = 0.132716
+anchor_right = 0.62934
+anchor_bottom = 0.183642
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="GridContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
 [connection signal="pressed" from="GridContainer/StoryBtn" to="." method="_on_story_btn_pressed"]
 [connection signal="pressed" from="GridContainer/HowPlayBtn" to="." method="_on_how_play_btn_pressed"]
+[connection signal="pressed" from="CloseBtn" to="." method="_on_close_btn_pressed"]
