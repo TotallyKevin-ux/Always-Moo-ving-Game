@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rwmbo507rr54"]
 
-[ext_resource type="Texture2D" uid="uid://c2y7l375e0yam" path="res://UI/optionsingame.png" id="1_hx1dx"]
-[ext_resource type="Texture2D" uid="uid://dp6k677kxlm3s" path="res://UI/bell.PNG" id="2_xl6f1"]
+[ext_resource type="Texture2D" uid="uid://c2y7l375e0yam" path="res://Art/optionsingame.png" id="1_hx1dx"]
+[ext_resource type="Texture2D" uid="uid://dp6k677kxlm3s" path="res://Art/bell.PNG" id="2_xl6f1"]
 
 [sub_resource type="GDScript" id="GDScript_5pttv"]
 script/source = "extends Control
@@ -23,7 +23,7 @@ func _on_resume_btn_pressed() -> void:
 	_is_paused = false
 
 func _on_how_play_btn_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file(\"res://UI/how_to_play.tscn\")
 
 
 func _on_main_menu_btn_pressed() -> void:
@@ -32,6 +32,10 @@ func _on_main_menu_btn_pressed() -> void:
 
 func _on_story_btn_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_volume_value_changed(value: float):
+	AudioServer.set_bus_volume_db(0,value)
 "
 
 [node name="PausedMenu" type="Control"]
@@ -89,20 +93,27 @@ layout_mode = 2
 text = "How To Play"
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 397.0
-offset_top = 68.0
-offset_right = 791.0
-offset_bottom = 576.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -254.0
+offset_right = 197.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_hx1dx")
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 557.0
-offset_top = 177.0
-offset_right = 678.0
-offset_bottom = 240.0
+offset_left = 541.0
+offset_top = 179.0
+offset_right = 662.0
+offset_bottom = 242.0
 theme_override_icons/grabber = ExtResource("2_xl6f1")
 theme_override_icons/grabber_highlight = ExtResource("2_xl6f1")
 
