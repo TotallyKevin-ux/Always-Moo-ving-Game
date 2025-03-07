@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="1_uqtek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_20qgq"]
-radius = 1810.02
+radius = 1777.29
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_34x3l"]
 radius = 266.002
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xml5h"]
-radius = 2081.08
+radius = 1535.16
 
 [node name="UFO" type="CharacterBody2D"]
 script = ExtResource("1_sayms")
@@ -19,7 +19,7 @@ script = ExtResource("1_sayms")
 path_desired_distance = 0.1
 target_desired_distance = 0.1
 path_max_distance = 1000.0
-simplify_path = true
+debug_enabled = true
 
 [node name="Collision" type="Area2D" parent="."]
 

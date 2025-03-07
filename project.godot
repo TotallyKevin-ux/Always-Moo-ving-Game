@@ -25,6 +25,7 @@ Navigation=""
 Enemy=""
 Player=""
 dashing=""
+coin=""
 
 [input]
 

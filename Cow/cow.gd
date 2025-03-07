@@ -16,7 +16,7 @@ var can_slide = true
 var sliding = false
 var slide_vel = Vector2(0,0)
 var dash_speed = 900
-
+var keys = 0
 
 const death_x = 0
 const death_y = 0
@@ -74,6 +74,9 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
 		timer.start()
 		timer.paused = false
+	if area.is_in_group("coin"):
+		keys = keys +1
+		print("key!")
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:
@@ -168,7 +171,6 @@ func _on_slide_timeout() -> void:
 	can_slide = true
 	stamina_bar.visible = false
 	stamina_bar_4.visible = false
-
 
 func _on_mov_grace_timeout() -> void:
 	input_grace_timer.stop()

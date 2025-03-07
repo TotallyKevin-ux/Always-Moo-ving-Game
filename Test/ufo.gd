@@ -13,6 +13,7 @@ var begin_dash_ani = false
 var tracking = true
 var dash_direction = Vector2.ZERO
 var target_position
+var direction = Vector2.ZERO
 
 const death_x = 500
 const death_y = 500
@@ -21,8 +22,8 @@ const SPEED = 300.0
 func _physics_process(_delta: float):
 	if active:
 		nav_agent.target_position = player.global_position
-		var next_path_pos := nav_agent.get_next_path_position()
-		var direction := global_position.direction_to(next_path_pos)
+		direction = nav_agent.get_next_path_position() - global_position
+		direction = direction.normalized()
 		if begin_dash_ani == true:
 			velocity = Vector2.ZERO
 		elif sliding == true:
@@ -33,9 +34,9 @@ func _physics_process(_delta: float):
 		velocity = Vector2.ZERO
 	move_and_slide()
 
-func _on_death_timer_timeout() -> void:
-	position.x = death_x
-	position.y = death_y
+#func _on_death_timer_timeout() -> void:
+	#position.x = death_x
+	#position.y = death_y
 
 func _on_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Props/alien.farmer.gd" id="1_ejvag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sa1yr"]
-size = Vector2(80, 52)
+size = Vector2(36, 52)
 
 [node name="Alien_farmer" type="CharacterBody2D"]
 script = ExtResource("1_ejvag")
@@ -13,10 +13,12 @@ script = ExtResource("1_ejvag")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_0rcg3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_sa1yr")
+disabled = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." groups=["Enemy"]]
 position = Vector2(50, 0)
 
 [node name="Timer" type="Timer" parent="."]
