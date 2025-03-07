@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://5qfnly7b1xfx"]
+[gd_scene load_steps=5 format=3 uid="uid://5qfnly7b1xfx"]
 
 [ext_resource type="Script" path="res://Props/barn.gd" id="1_il5vk"]
+[ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="2_5ocr5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8v3jg"]
 size = Vector2(130, 131)
@@ -22,6 +23,7 @@ position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_ct6og")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.898371, 0.898371, 0, 1)
+modulate = Color(1, 0.794825, 0.875279, 1)
+texture = ExtResource("2_5ocr5")
 
 [connection signal="body_entered" from="WinArea" to="." method="_on_body_entered"]
