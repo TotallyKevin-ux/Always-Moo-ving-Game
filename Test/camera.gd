@@ -3,6 +3,7 @@ extends Camera2D
 @export var acceleration1: float = 100
 @export var acceleration2: float = 100
 @export var point: Vector2
+var og_point
 var fps
 var epsilon: float = .5
 var phase = Phase.Start
@@ -13,6 +14,7 @@ var velocity: Vector2
 @onready var origin = position
 
 func _ready() -> void:
+	og_point = point
 	isPanning = true
 
 func _physics_process(delta: float) -> void:
@@ -35,9 +37,11 @@ enum Phase { Start, End,}
 
 func get_phase():
 	var path = point - position
+	var margin = (origin + og_point) / 2 - position 
 	if original_path.x * path.x > 0 or original_path.y * path.y > 0:
 		return Phase.Start
-	if abs(position.x - origin.x) < epsilon or abs(position.y - origin.y) < epsilon:
+	#if abs(position.x - origin.x) < epsilon or abs(position.y - origin.y) < epsilon:
+	elif margin.x < epsilon or margin.y < epsilon:
 		isPanning = false
 		print("fc")
 		return Phase.Start
