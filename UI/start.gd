@@ -12,7 +12,8 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Test/test_level.tscn")
+	#get_tree().change_scene_to_file("res://Test/test_level.tscn")
+	get_tree().change_scene_to_file("res://UI/cutscene_start.tscn")
 
 
 func _on_option_button_pressed():
@@ -24,3 +25,7 @@ func _on_how_to_play_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_story_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://UI/cutscene_menu.tscn")

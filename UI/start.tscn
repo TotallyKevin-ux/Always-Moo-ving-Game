@@ -31,6 +31,21 @@ anchor_bottom = 0.953704
 text = "Option"
 metadata/_edit_use_anchors_ = true
 
+[node name="StoryButton" type="Button" parent="."]
+z_index = -5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.352672
+anchor_top = 0.576005
+anchor_right = 0.560137
+anchor_bottom = 0.790511
+offset_left = 36.7213
+offset_top = 102.748
+offset_right = 36.7214
+offset_bottom = 102.748
+text = "Option"
+metadata/_edit_use_anchors_ = true
+
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 2
 anchor_left = 0.963542
@@ -65,5 +80,6 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="StoryButton" to="." method="_on_story_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
