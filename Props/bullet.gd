@@ -3,7 +3,7 @@ extends CharacterBody2D
 var pos:Vector2
 var rota:float
 var dir:float
-var speed = 2000
+var speed = 1600
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +18,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("range"):
+		queue_free() # Replace with function body.
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Wall"):
-		queue_free()
+
+func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	queue_free()

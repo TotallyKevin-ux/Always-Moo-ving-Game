@@ -1,17 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://cf3l6uf7riubo"]
+[gd_scene load_steps=24 format=3 uid="uid://cf3l6uf7riubo"]
 
 [ext_resource type="Script" path="res://Cow/test_cow.gd" id="1_puokb"]
 [ext_resource type="Script" path="res://Cow/progress_bar.gd" id="2_nd5x0"]
 [ext_resource type="Texture2D" uid="uid://dvx4lgmmked7a" path="res://Art/MooCow.svg" id="3_1sauq"]
+[ext_resource type="Texture2D" uid="uid://myu5xns3en6a" path="res://Art/cow running back view upgraded.png" id="4_f1aw2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dl0w"]
-size = Vector2(62, 62)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5sii"]
+size = Vector2(38, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q767b"]
-size = Vector2(62, 62)
+size = Vector2(45, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vocfr"]
-size = Vector2(62, 62)
+size = Vector2(45, 49)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfqsc"]
 bg_color = Color(0.885635, 0.478807, 0.0397845, 1)
@@ -63,6 +64,14 @@ region = Rect2(319, 396, 157, 198)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tpop"]
 atlas = ExtResource("3_1sauq")
 region = Rect2(477, 396, 157, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar236"]
+atlas = ExtResource("4_f1aw2")
+region = Rect2(53, 25, 607, 1015)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbepd"]
+atlas = ExtResource("4_f1aw2")
+region = Rect2(660, 25, 607, 1015)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_167dg"]
 animations = [{
@@ -129,41 +138,61 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3tgl2")
+"texture": SubResource("AtlasTexture_ar236")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cbejb")
+"texture": SubResource("AtlasTexture_nbepd")
+}],
+"loop": true,
+"name": &"running down",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"running left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"running right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tgl2")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k6a35")
 }],
 "loop": true,
-"name": &"walking",
-"speed": 7.0
+"name": &"running up",
+"speed": 6.0
 }]
 
-[node name="Cow" type="CharacterBody2D" groups=["Player"]]
+[node name="Cow" type="CharacterBody2D"]
 script = ExtResource("1_puokb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_0dl0w")
+position = Vector2(-3, -0.5)
+shape = SubResource("RectangleShape2D_t5sii")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["dashing"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, -0.5)
 shape = SubResource("RectangleShape2D_q767b")
 
 [node name="Hurt Box" type="Area2D" parent="." groups=["Player"]]
 process_mode = 1
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt Box"]
+position = Vector2(-2.5, -0.5)
 shape = SubResource("RectangleShape2D_vocfr")
 
 [node name="stamina" type="ProgressBar" parent="."]
 offset_left = -32.0
-offset_top = -50.0
-offset_bottom = -38.0
+offset_top = -42.0
+offset_bottom = -30.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_bfqsc")
 value = 50.0
 fill_mode = 1
@@ -171,9 +200,9 @@ show_percentage = false
 script = ExtResource("2_nd5x0")
 
 [node name="stamina3" type="ProgressBar" parent="."]
-offset_top = -50.0
+offset_top = -42.0
 offset_right = 32.0
-offset_bottom = -38.0
+offset_bottom = -30.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_bfqsc")
 value = 50.0
 show_percentage = false
@@ -186,10 +215,14 @@ wait_time = 3.0
 wait_time = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 1)
+scale = Vector2(0.308917, 0.287879)
 sprite_frames = SubResource("SpriteFrames_167dg")
-animation = &"idle"
+animation = &"running up"
+frame_progress = 0.344333
 
 [node name="InputGrace" type="Timer" parent="."]
+wait_time = 0.4
 
 [connection signal="area_entered" from="Hurt Box" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Slide" to="." method="_on_slide_timeout"]
