@@ -11,19 +11,17 @@ extends CharacterBody2D
 @onready var dash_box := $Area2D
 @onready var input_grace_timer := $InputGrace
 
-
 var can_slide = true
 var sliding = false
 var slide_vel = Vector2(0,0)
-var dash_speed = 900
+var dash_speed = 1500
 var keys = 0
 
 const death_x = 0
 const death_y = 0
 
-
 const MAX_SPEED: int = 900 ## maximum speed in any direction
-const ACCEL_VAL: int = 60 ## static acceleration value in any direction
+const ACCEL_VAL: int = 40 ## static acceleration value in any direction
 const RESIST_VAL: int = 20 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
 enum {UP, DOWN, RIGHT, LEFT}
 var input_held = [false,false,false,false] 
@@ -38,11 +36,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	cur_vel = get_next_velocity()
 	if cur_vel.length() > 0:	##sprite animation
-		sprite.play("walking")
+		sprite.play("running up")
 	else:
 		sprite.play("idle")
-	
-	
 	if(Input.is_action_pressed("space")):
 		if can_slide == true:
 			if(Input.is_action_pressed("up")):
@@ -58,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		set_velocity(cur_vel)
 	else:
 		pass
-
 
 	move_and_slide()
 
