@@ -1,10 +1,148 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0wsu6auu13gs"]
+[gd_scene load_steps=9 format=3 uid="uid://b0wsu6auu13gs"]
 
 [ext_resource type="Script" path="res://UI/options_menu.gd" id="1_wmdde"]
-[ext_resource type="Texture2D" uid="uid://cc4jxcnxim7ep" path="res://UI/optionsmainmenu.png" id="2_6iu7p"]
-[ext_resource type="Texture2D" uid="uid://dp6k677kxlm3s" path="res://UI/bell.PNG" id="3_7u1mo"]
+[ext_resource type="Texture2D" uid="uid://dt0qw8qa7cy0k" path="res://Art/optionsmainmenu.png" id="2_6iu7p"]
+[ext_resource type="Texture2D" uid="uid://dp6k677kxlm3s" path="res://Art/bell.PNG" id="3_7u1mo"]
+
+[sub_resource type="Shader" id="Shader_upaby"]
+code = "shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+
+uniform float lod: hint_range(0.0, 5) = 0.0;
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsdg6"]
+shader = SubResource("Shader_upaby")
+shader_parameter/lod = 5.0
+
+[sub_resource type="Animation" id="Animation_6knal"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GridContainer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GridContainer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_2vat1"]
+resource_name = "blur"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GridContainer:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GridContainer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsb33"]
+_data = {
+"RESET": SubResource("Animation_6knal"),
+"blur": SubResource("Animation_2vat1")
+}
 
 [node name="OptionsMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,31 +152,29 @@ grow_vertical = 2
 script = ExtResource("1_wmdde")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gsdg6")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = 7.0
-offset_right = 13.0
-offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
+anchor_left = 0.503
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.503
 anchor_bottom = 0.5
-offset_left = -77.0
-offset_top = -62.0
-offset_right = 124.0
+offset_left = -122.456
+offset_top = -86.0
+offset_right = 115.544
 offset_bottom = 238.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/v_separation = 30
+theme_override_constants/v_separation = 60
 
 [node name="MainMenuBtn" type="Button" parent="GridContainer"]
 custom_minimum_size = Vector2(150, 50)
@@ -51,38 +187,49 @@ layout_mode = 2
 text = "Story"
 
 [node name="HowPlayBtn" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "How to Play"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -764.0
-offset_top = -247.0
-offset_right = -367.0
-offset_bottom = 263.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
+mouse_filter = 2
 mouse_force_pass_scroll_events = false
 texture = ExtResource("2_6iu7p")
 stretch_mode = 5
 
 [node name="Volume" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 571.0
-offset_top = 199.0
-offset_right = 684.0
-offset_bottom = 239.0
+layout_direction = 1
+layout_mode = 2
+anchor_left = 0.469618
+anchor_top = 0.251543
+anchor_right = 0.599826
+anchor_bottom = 0.313272
 theme_override_icons/grabber = ExtResource("3_7u1mo")
 theme_override_icons/grabber_highlight = ExtResource("3_7u1mo")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jsb33")
+}
+
+[node name="CloseBtn" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.605903
+anchor_top = 0.134259
+anchor_right = 0.627604
+anchor_bottom = 0.177469
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="GridContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
 [connection signal="pressed" from="GridContainer/StoryBtn" to="." method="_on_story_btn_pressed"]
 [connection signal="pressed" from="GridContainer/HowPlayBtn" to="." method="_on_how_play_btn_pressed"]
+[connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="CloseBtn" to="." method="_on_close_btn_pressed"]
