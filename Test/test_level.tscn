@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=28 format=4 uid="uid://bkeehpr0lm0sk"]
+
 
 [ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
 [ext_resource type="Texture2D" uid="uid://btqg86sbmj3sv" path="res://Art/Grass Sprite Sheet.png" id="1_omd0x"]
@@ -6,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://6f023x8nqide" path="res://Art/GrassTreeRockUPDATE.svg" id="3_uog8a"]
 [ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
 [ext_resource type="Script" path="res://Cow/cow.gd" id="4_6obgl"]
+
 [ext_resource type="Texture2D" uid="uid://bt3aeoiwqgsj5" path="res://Art/Fence Sprite Sheet 1.png" id="4_kp88s"]
 [ext_resource type="Texture2D" uid="uid://5kaxend2e1f" path="res://Art/Fence Sprite Sheet 2.png" id="5_r385j"]
 [ext_resource type="PackedScene" uid="uid://bj6hdgk8a7ny3" path="res://Key.tscn" id="8_bwi5g"]
@@ -17,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://5qfnly7b1xfx" path="res://Props/barn.tscn" id="11_ywj4a"]
 [ext_resource type="Script" path="res://coin2.gd" id="12_017jl"]
 [ext_resource type="Script" path="res://coin3.gd" id="13_33b4w"]
+[ext_resource type="PackedScene" uid="uid://rwmbo507rr54" path="res://UI/paused_menu.tscn" id="8_vvl5t"]
+
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iinng"]
 vertices = PackedVector2Array(236.094, -5096.09, 289.898, 441, -9726.54, 441, -9471.44, -5189.9)
@@ -310,6 +315,12 @@ position = Vector2(-108, -39)
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("4_6obgl")
+
+[node name="PausedMenu" parent="Cow" instance=ExtResource("8_vvl5t")]
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 2.0
+offset_bottom = -1.0
 
 [node name="Camera2D" type="Camera2D" parent="Cow"]
 zoom = Vector2(0.5, 0.5)

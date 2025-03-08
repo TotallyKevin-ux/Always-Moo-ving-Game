@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkgarthngh3wq"]
+
+[ext_resource type="Script" path="res://UI/cutscene_start.gd" id="1_j7o1n"]
+[ext_resource type="VideoStream" path="res://Art/Intro-Cutscene.ogv" id="1_u6vn2"]
+
+[node name="Cutscene" type="Node2D"]
+script = ExtResource("1_j7o1n")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = ExtResource("1_u6vn2")
+volume_db = -10.0
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
