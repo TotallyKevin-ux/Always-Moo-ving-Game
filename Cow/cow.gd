@@ -22,9 +22,9 @@ const death_x = 0
 const death_y = 0
 
 
-const MAX_SPEED: int = 500 ## maximum speed in any direction
-const ACCEL_VAL: int = 20 ## static acceleration value in any direction
-const RESIST_VAL: int = 10 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
+const MAX_SPEED: int = 900 ## maximum speed in any direction
+const ACCEL_VAL: int = 60 ## static acceleration value in any direction
+const RESIST_VAL: int = 20 ## static acceleration value for "air resistance" that apply to any direction player is not moving in
 enum {UP, DOWN, RIGHT, LEFT}
 var input_held = [false,false,false,false] 
 var input_grace: bool = false ## if still in grace period (consider second last input)

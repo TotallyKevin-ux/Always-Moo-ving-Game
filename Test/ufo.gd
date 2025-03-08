@@ -19,7 +19,7 @@ var direction = Vector2.ZERO
 
 const death_x = -7217
 const death_y = -1360
-const SPEED = 300.0
+const SPEED = 700.0
 
 func _ready():
 	dash_ex.visible = false
