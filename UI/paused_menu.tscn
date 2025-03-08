@@ -54,7 +54,7 @@ layout_mode = 2
 text = "Story"
 
 [node name="HowPlayBtn" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 65)
 layout_mode = 2
 text = "How To Play"
 

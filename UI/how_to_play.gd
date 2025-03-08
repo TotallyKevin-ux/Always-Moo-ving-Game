@@ -34,3 +34,6 @@ func close_how_to_play():
 	if previous_menu:
 		previous_menu.visible = true
 	visible = false
+	
+func _on_close_btn_pressed() -> void:
+	close_how_to_play()

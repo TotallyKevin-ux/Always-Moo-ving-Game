@@ -187,6 +187,12 @@ tile_set = SubResource("TileSet_ph0qf")
 position = Vector2(-2, 1)
 script = ExtResource("4_6obgl")
 
+[node name="PausedMenu" parent="Cow" instance=ExtResource("8_vvl5t")]
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 2.0
+offset_bottom = -1.0
+
 [node name="Camera2D" type="Camera2D" parent="Cow"]
 process_callback = 0
 
@@ -214,7 +220,5 @@ player = NodePath("../Cow")
 [node name="Alien_farmer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_g6b1p")]
 position = Vector2(-474, 250)
 player = NodePath("../Cow")
-
-[node name="PausedMenu" parent="." instance=ExtResource("8_vvl5t")]
 
 [connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]
