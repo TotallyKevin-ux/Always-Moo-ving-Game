@@ -1,29 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://5qfnly7b1xfx"]
+[gd_scene load_steps=4 format=3 uid="uid://5qfnly7b1xfx"]
 
 [ext_resource type="Script" path="res://Props/barn.gd" id="1_il5vk"]
-[ext_resource type="Texture2D" uid="uid://cmdbcowejjoxi" path="res://Art/random-issac-character-i--1732306831.png" id="2_5ocr5"]
+[ext_resource type="Texture2D" uid="uid://dr2ueq7jphv6h" path="res://Art/barn.png" id="2_obso0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8v3jg"]
 size = Vector2(130, 131)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct6og"]
-size = Vector2(124, 125)
-
 [node name="Barn" type="StaticBody2D"]
 script = ExtResource("1_il5vk")
 
-[node name="WinArea" type="Area2D" parent="."]
+[node name="WinArea" type="Area2D" parent="." groups=["WinCon"]]
 
-[node name="ReachDetect" type="CollisionShape2D" parent="WinArea"]
+[node name="ReachDetect" type="CollisionShape2D" parent="WinArea" groups=["WinCon"]]
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_8v3jg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0.5)
-shape = SubResource("RectangleShape2D_ct6og")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.794825, 0.875279, 1)
-texture = ExtResource("2_5ocr5")
-
-[connection signal="body_entered" from="WinArea" to="." method="_on_body_entered"]
+[node name="Sprite2D" type="Sprite2D" parent="WinArea"]
+position = Vector2(-3, 4.76837e-07)
+scale = Vector2(0.117797, 0.130811)
+texture = ExtResource("2_obso0")
+region_enabled = true
+region_rect = Rect2(424.254, 106.979, 1180.68, 1097.82)

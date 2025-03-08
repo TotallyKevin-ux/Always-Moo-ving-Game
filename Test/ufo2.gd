@@ -17,8 +17,8 @@ var dash_direction = Vector2.ZERO
 var target_position
 var direction = Vector2.ZERO
 
-const death_x = -7217
-const death_y = -1360
+const death_x = -5601
+const death_y = -3090
 const SPEED = 300.0
 
 func _ready():

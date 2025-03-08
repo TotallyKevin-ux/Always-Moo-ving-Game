@@ -26,6 +26,7 @@ Enemy=""
 Player=""
 dashing=""
 coin=""
+WinCon=""
 
 [input]
 

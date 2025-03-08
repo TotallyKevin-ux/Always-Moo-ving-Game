@@ -67,6 +67,7 @@ func died():
 	position.y = death_y
 	timer.start()
 	timer.paused = false
+	keys = 0
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Enemy"):
@@ -75,6 +76,9 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("coin"):
 		keys = keys +1
 		print("key!")
+	if area.is_in_group("WinCon"):
+		if keys >= 3:
+			print("you win")
 
 ## gets movement direction
 func get_next_velocity() -> Vector2:

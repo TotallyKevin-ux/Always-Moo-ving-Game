@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuc1b74hod44t"]
+[gd_scene load_steps=7 format=3 uid="uid://cuc1b74hod44t"]
 
 [ext_resource type="Script" path="res://Test/ufo.gd" id="1_sayms"]
 [ext_resource type="Texture2D" uid="uid://dl5vrlexru332" path="res://Art/Ufo Upgraded.png" id="2_fexjj"]
+[ext_resource type="Texture2D" uid="uid://4by4kxq1jc16" path="res://Art/Exclamationpoint.svg" id="3_ohybq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_20qgq"]
 radius = 1777.29
@@ -20,7 +21,6 @@ script = ExtResource("1_sayms")
 path_desired_distance = 0.1
 target_desired_distance = 0.1
 path_max_distance = 1000.0
-debug_enabled = true
 
 [node name="Collision" type="Area2D" parent="."]
 
@@ -64,6 +64,13 @@ autostart = true
 
 [node name="Begin_dash" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(4, -960)
+scale = Vector2(0.426573, 0.3765)
+texture = ExtResource("3_ohybq")
+region_enabled = true
+region_rect = Rect2(1657.66, 2688.87, 572.672, 1000.79)
 
 [connection signal="area_entered" from="Collision" to="." method="_on_detection_area_entered"]
 [connection signal="area_entered" from="Can_dash" to="." method="_on_can_dash_area_entered"]
