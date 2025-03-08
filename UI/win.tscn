@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blrrbl4fvii2x"]
+
+[ext_resource type="Texture2D" uid="uid://dvdnhf2k1650y" path="res://Art/Victory.PNG" id="1_qo77n"]
+
+[node name="game" type="Sprite2D"]
+texture = ExtResource("1_qo77n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
