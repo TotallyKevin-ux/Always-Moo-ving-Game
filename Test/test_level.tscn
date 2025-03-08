@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bkeehpr0lm0sk"]
+[gd_scene load_steps=14 format=4 uid="uid://bkeehpr0lm0sk"]
 
 [ext_resource type="PackedScene" uid="uid://cf3l6uf7riubo" path="res://Cow/cow.tscn" id="1_ihw5m"]
 [ext_resource type="Texture2D" uid="uid://bqogw3w07cf14" path="res://Art/Capture.PNG" id="1_vpchw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Test/label.gd" id="3_xo3ay"]
 [ext_resource type="PackedScene" uid="uid://cuc1b74hod44t" path="res://Props/ufo.tscn" id="4_5buyb"]
 [ext_resource type="Script" path="res://Cow/cow.gd" id="4_6obgl"]
+[ext_resource type="AudioStream" uid="uid://cr0x2uf7xbmmg" path="res://Music/Gameplay_Cyber Farm.mp3" id="8_fjmp8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nu5hm"]
 vertices = PackedVector2Array(749, 520, -746, 500, -753, -612, 754, -627)
@@ -214,4 +215,9 @@ player = NodePath("../Cow")
 position = Vector2(-474, 250)
 player = NodePath("../Cow")
 
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fjmp8")
+autoplay = true
+
 [connection signal="timeout" from="Death Timer" to="Cow" method="_on_death_timer_timeout"]
+[connection signal="finished" from="GameMusic" to="Cow" method="_on_game_music_finished"]

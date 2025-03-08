@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cf3l6uf7riubo"]
+[gd_scene load_steps=22 format=3 uid="uid://cf3l6uf7riubo"]
 
-[ext_resource type="Script" path="res://Cow/test_cow.gd" id="1_puokb"]
+[ext_resource type="Script" path="res://Cow/cow.gd" id="1_0cfri"]
 [ext_resource type="Script" path="res://Cow/progress_bar.gd" id="2_nd5x0"]
 [ext_resource type="Texture2D" uid="uid://dvx4lgmmked7a" path="res://Art/MooCow.svg" id="3_1sauq"]
+[ext_resource type="AudioStream" uid="uid://c0xo00hnfuuw4" path="res://Music/Running_ Mixkit Running in Wet Grass.mp3" id="4_drp1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dl0w"]
 size = Vector2(62, 62)
@@ -143,7 +144,7 @@ animations = [{
 }]
 
 [node name="Cow" type="CharacterBody2D" groups=["Player"]]
-script = ExtResource("1_puokb")
+script = ExtResource("1_0cfri")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -190,6 +191,12 @@ sprite_frames = SubResource("SpriteFrames_167dg")
 animation = &"idle"
 
 [node name="InputGrace" type="Timer" parent="."]
+
+[node name="runningSoundFx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_drp1l")
+volume_db = 10.75
+
+[node name="slidingSoundFx" type="AudioStreamPlayer" parent="."]
 
 [connection signal="area_entered" from="Hurt Box" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Slide" to="." method="_on_slide_timeout"]

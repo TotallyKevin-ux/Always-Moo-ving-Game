@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck5vt3an2jvqm"]
+[gd_scene load_steps=4 format=3 uid="uid://ck5vt3an2jvqm"]
 
 [ext_resource type="Script" path="res://UI/start.gd" id="1_hleet"]
 [ext_resource type="PackedScene" uid="uid://b0wsu6auu13gs" path="res://UI/options_menu.tscn" id="2_upcyg"]
+[ext_resource type="AudioStream" uid="uid://b6w53awnbqtxp" path="res://Music/Main Menu_Future Visions.mp3" id="3_na8d5"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -47,6 +48,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_na8d5")
+autoplay = true
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="finished" from="MenuMusic" to="." method="_on_audio_stream_player_finished"]

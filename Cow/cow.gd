@@ -44,8 +44,12 @@ func _physics_process(delta: float) -> void:
 	cur_vel = get_next_velocity()
 	set_velocity(cur_vel)
 	if cur_vel.length() > 0:	##sprite animation
+		if not $runningSoundFx.has_stream_playback():
+			$runningSoundFx.play()
 		sprite.play("walking")
 	else:
+		if $runningSoundFx.has_stream_playback():
+			$runningSoundFx.stop()
 		sprite.play("idle")
 	if(Input.is_action_pressed("space")):
 		if(Input.is_action_pressed("up")):
@@ -56,8 +60,14 @@ func _physics_process(delta: float) -> void:
 			velocity.x = -dash_speed
 		if(Input.is_action_pressed("right")):
 			velocity.x = dash_speed
+		if $runningSoundFx.has_stream_playback():
+			$runningSoundFx.stop()
+			$slidingSoundFx.play()
 		sliding_func()
 	if sliding == false:
+		if not $runningSoundFx.has_stream_playback():
+			$slidingSoundFx.stop()
+			$runningSoundFx.play()
 		set_velocity(cur_vel)
 		slide_vel = cur_vel
 	else:
@@ -183,3 +193,7 @@ func _on_mov_grace_timeout() -> void:
 			cur_accel.x = 0
 		if not y_input_held():
 			cur_accel.y = 0
+
+
+func _on_game_music_finished() -> void:
+	$GameMusic.play()
